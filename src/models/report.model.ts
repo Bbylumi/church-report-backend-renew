@@ -1,6 +1,7 @@
 import mongoose, { Schema, Document } from "mongoose";
 
 export interface IReport extends Document {
+    date: string;
     month: string;
     year: string;
     attendance: {
@@ -13,6 +14,7 @@ export interface IReport extends Document {
 } 
 
 const ReportSchema: Schema = new Schema({
+    date: { type: String, required: true},
     month: { type: String, required: true },
     year: { type: String, required: true },
     attendance: {
