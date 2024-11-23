@@ -22,7 +22,7 @@ export class ReportRepository {
     return await Report.findByIdAndUpdate(reportId, updateData, { new: true });
   }
 
- 
+  
   async delete(reportId: string): Promise<IReport | null> {
     return await Report.findByIdAndDelete(reportId);
   }
