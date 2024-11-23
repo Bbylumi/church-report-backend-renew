@@ -1,6 +1,8 @@
 import mongoose, { Schema, Document } from "mongoose";
 
 export interface IAttendance extends Document {
+    date: string;
+    month: string,
     men: number;
     women: number;
     children: number;
@@ -8,9 +10,11 @@ export interface IAttendance extends Document {
 }
 
 const AttendanceSchema: Schema = new Schema({
+    date: { type: String, required: true},
+    month: { type: String, required: true},
     men: { type: Number, default: 0},
     women: { type: Number, default: 0 },
-    children: { typr: Number, default: 0 },
+    children: { type: Number, default: 0 },
     total: { type: Number, default: 0 }
 });
 

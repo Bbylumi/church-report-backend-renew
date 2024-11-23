@@ -22,7 +22,7 @@ class ReportController {
 
   async getReportById(req: Request, res: Response): Promise<void> {
     const report = await reportService.getReportById(req.params.id);
-    if (report) {
+    if (!report) {
       res.json(report);
     } else {
       res.status(404).json({ message: "Report not Found" });
