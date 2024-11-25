@@ -23,3 +23,5 @@ class MonetaryService {
         return await Monetary.findByIdAndDelete(id);
     }
 }
+
+export default new MonetaryService();
