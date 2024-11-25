@@ -4,6 +4,7 @@ export interface IReport extends Document {
     date: string;
     month: string;
     year: string;
+    preacher: string;
     attendance: {
         sunday: number;
         midweek: {
@@ -16,6 +17,7 @@ export interface IReport extends Document {
 const ReportSchema: Schema = new Schema({
     date: { type: String, required: true},
     month: { type: String, required: true },
+    preacher: { type: String, required: true },
     year: { type: String, required: true },
     attendance: {
         sunday: { type: String, default: 0 },

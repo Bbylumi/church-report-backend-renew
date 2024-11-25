@@ -1,6 +1,7 @@
 export interface CreateReportDTO {
     month: string;
     date: string;
+    preacher: string;
     year: number;
     attendance: {
       sunday: number;
@@ -14,6 +15,7 @@ export interface CreateReportDTO {
   export interface UpdateReportDTO {
     month?: string;
     year?: number;
+    preacher?: String;
     date?: string;
     attendance?: {
       sunday?: number;
