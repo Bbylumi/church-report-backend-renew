@@ -2,6 +2,14 @@ import Monetary, { Imonetary } from "../models/monetary.model"
 import { createMonetaryDTO, updateMonetaryDTO } from "../dtos/monetary.dtos"
 
 class MonetaryService {
+    async generateReport(name: string, date: string) {
+        return await Monetary.find({
+            name: name,
+            date: new Date(date)
+        });
+    }
+
+
     async createMonetary( data: createMonetaryDTO): Promise<Imonetary>{
         const monetary = new Monetary( data );
         return await monetary.save();

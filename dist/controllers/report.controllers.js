@@ -37,7 +37,7 @@ class ReportController {
     getReportById(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const report = yield report_service_1.default.getReportById(req.params.id);
-            if (report) {
+            if (!report) {
                 res.json(report);
             }
             else {

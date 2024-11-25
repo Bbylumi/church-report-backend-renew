@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import monetaryService from "../services/monetary.service";
+import monetaryService from "../services/monetary.service"; 
 
 class MonetaryController{
     async createMonetary(req: Request, res: Response): Promise <void> {

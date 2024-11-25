@@ -9,4 +9,5 @@ router.get("/:id", monetaryControllers.getMonetaryById);
 router.put("/:id", monetaryControllers.updateMonetary);
 router.delete("/:id", monetaryControllers.deleteMonetary)
 
+
 export default router;

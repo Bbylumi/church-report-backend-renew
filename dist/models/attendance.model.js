@@ -24,17 +24,12 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importStar(require("mongoose"));
-const ReportSchema = new mongoose_1.Schema({
+const AttendanceSchema = new mongoose_1.Schema({
     date: { type: String, required: true },
     month: { type: String, required: true },
-    preacher: { type: String, required: true },
-    year: { type: String, required: true },
-    attendance: {
-        sunday: { type: String, default: 0 },
-        midweek: {
-            Tuesday: { type: Number, default: 0 },
-            Thursday: { type: Number, default: 0 }
-        },
-    },
+    men: { type: Number, default: 0 },
+    women: { type: Number, default: 0 },
+    children: { type: Number, default: 0 },
+    total: { type: Number, default: 0 }
 });
-exports.default = mongoose_1.default.model("Report", ReportSchema);
+exports.default = mongoose_1.default.model("Attendance", AttendanceSchema);
