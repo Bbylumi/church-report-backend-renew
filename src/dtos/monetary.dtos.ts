@@ -4,13 +4,13 @@ export interface PercentageDTO{
 }
 
 
-export interface CreateMonetaryDTO{
+export interface createMonetaryDTO{
     name: String;
     date: String;
     percentages: PercentageDTO[];
 }
 
-export interface UpdateMonetaryDTO{
+export interface updateMonetaryDTO{
     name?: String;
     date?: String;
     percentages: PercentageDTO[];
