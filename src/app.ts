@@ -1,6 +1,5 @@
 import express, { Application } from "express"; 
-import reportRoutes from "./routes/report.routes";
-import attendanceRoutes from "./routes/attendance.routes";
+import reportRoutes from "./routes/report.routes"; 
 import monetaryRoutes from "./routes/monetary.routes"
 
 const app: Application = express();
@@ -8,8 +7,7 @@ const app: Application = express();
 // Middleware
 app.use(express.json()); // For parsing JSON requests
 
-app.use('/reports', reportRoutes)
-app.use('/attendances', attendanceRoutes)
+app.use('/reports', reportRoutes) 
 app.use('/monetary', monetaryRoutes)
  
 app.get("/", (_req, res) => {
