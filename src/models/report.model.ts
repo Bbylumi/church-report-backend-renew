@@ -1,31 +1,111 @@
 import mongoose, { Schema, Document } from "mongoose";
 
-export interface IReport extends Document {
-    date: string;
-    month: string;
-    year: string;
-    preacher: string;
-    attendance: {
-        sunday: number;
-        midweek: {
-            Tuesday: number;
-            Thursday: number;
-        }
-    }
-} 
+ 
+export interface IAttendance {
+  men: number;
+  women: number;
+  children: number;
+  total: number;
+  preacher: string;
+}
 
-const ReportSchema: Schema = new Schema({
-    date: { type: String, required: true},
-    month: { type: String, required: true },
-    preacher: { type: String, required: true },
-    year: { type: String, required: true },
-    attendance: {
-        sunday: { type: String, default: 0 },
-        midweek: {
-            Tuesday: { type: Number, default: 0},
-            Thursday: { type: Number, default: 0}
-        },
-    },
+export interface ISundayAttendance extends IAttendance {
+  newConverts?: number; 
+  newGuests?: number;
+  sundaySchoolAttendance?: number; 
+  houseFellowshipAttendance?: number; 
+}
+ 
+
+export interface ImonetaryContribution {
+  type: string;
+  levels: {
+    percentage: number;
+    amount: number;
+  }[];
+}
+
+ 
+export interface IDayDetails {
+  day: string;
+  attendance: IAttendance | ISundayAttendance;
+  monetary?: ImonetaryContribution[]; 
+}
+
+
+export interface IweeklyReport {
+  weekNumber: number;
+  days: IDayDetails[];
+}
+
+
+export interface IsummaryAttendance {
+  day: string;
+  men: number;
+  women: number;
+  children: number;
+  total: number;
+}
+
+export interface IweeklySummary {
+  attendanceSummary: IsummaryAttendance[];
+}
+
+
+export interface IReport extends Document {
+  weekNumber: number;
+  days: IDayDetails[];
+  summary: IweeklySummary;
+}
+
+
+const AttendanceSchema = new Schema({
+  men: { type: Number, required: true },
+  women: { type: Number, required: true },
+  children: { type: Number, required: true },
+  preacher: { type: String, required: true },
+  newConverts: { type: Number, required: false },  
+  newGuests: { type: Number, required: false },  
+  sundaySchoolAttendance: { type: Number, required: false },  
+  houseFellowshipAttendance: { type: Number, required: false },  
 });
 
-export default mongoose.model<IReport>("Report", ReportSchema)
+
+const MonetaryContributionSchema = new Schema({
+  type: { type: String, required: true },
+  levels: [
+    {
+      percentage: { type: Number, required: true },
+      amount: { type: Number, required: true },
+    },
+  ],
+});
+
+
+const DayDetailSchema = new Schema({
+  day: { type: String, required: true },
+  attendance: { type: AttendanceSchema, required: true }, 
+  monetary: { type: [MonetaryContributionSchema], required: false }, 
+});
+
+
+const WeeklySummarySchema = new Schema({
+  attendanceSummary: [
+    {
+      day: { type: String, required: true },
+      men: { type: Number, required: true },
+      women: { type: Number, required: true },
+      children: { type: Number, required: true },
+      total: { type: Number, required: true },
+    },
+  ],
+});
+
+
+const ReportSchema = new Schema<IReport>({
+  weekNumber: { type: Number, required: true },
+  days: { type: [DayDetailSchema], required: true }, 
+  summary: { type: WeeklySummarySchema, required: true },
+});
+
+export default mongoose.model<IReport>("Report", ReportSchema);
