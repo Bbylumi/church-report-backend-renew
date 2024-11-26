@@ -1,28 +1,15 @@
+import { CreateDayDetailsDto, UpdateDayDetailsDto } from "./day-details.dtos";
+import { createWeeklySummaryDTO, updateweeklySummaryDto } from "./weekly-summary.dtos";
+
 export interface CreateReportDTO {
-    month: string;
-    date: string;
-    preacher: string;
-    year: number;
-    attendance: {
-      sunday: number;
-      midweek:{
-        Tuesday: number,
-        Thursday: number
-      }
-    };
+    weekNumber: number;
+    days: CreateDayDetailsDto[];
+    summary: createWeeklySummaryDTO;
   }
   
   export interface UpdateReportDTO {
-    month?: string;
-    year?: number;
-    preacher?: String;
-    date?: string;
-    attendance?: {
-      sunday?: number;
-      midweek?: {
-        Tuesday?: number;
-        Thursday?: number;
-      }
-    };
+    weekNumber?: number;
+    days?: UpdateDayDetailsDto[];
+    summary: updateweeklySummaryDto;
   }
   

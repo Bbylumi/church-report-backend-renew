@@ -1,4 +1,5 @@
 import mongoose, { Schema, Document } from "mongoose";
+import { dayDetailsPreSaveMiddleware } from "../middlewares/report.middlewares";
 
  
 export interface IAttendance {
@@ -64,10 +65,10 @@ const AttendanceSchema = new Schema({
   women: { type: Number, required: true },
   children: { type: Number, required: true },
   preacher: { type: String, required: true },
-  newConverts: { type: Number, required: false },  
-  newGuests: { type: Number, required: false },  
-  sundaySchoolAttendance: { type: Number, required: false },  
-  houseFellowshipAttendance: { type: Number, required: false },  
+  newConverts: { type: Number },  
+  newGuests: { type: Number },  
+  sundaySchoolAttendance: { type: Number },  
+  houseFellowshipAttendance: { type: Number },  
 });
 
 
@@ -107,5 +108,8 @@ const ReportSchema = new Schema<IReport>({
   days: { type: [DayDetailSchema], required: true }, 
   summary: { type: WeeklySummarySchema, required: true },
 });
+
+
+DayDetailSchema.pre("save", dayDetailsPreSaveMiddleware)
 
 export default mongoose.model<IReport>("Report", ReportSchema);
