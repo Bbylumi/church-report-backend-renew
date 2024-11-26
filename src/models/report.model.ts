@@ -35,7 +35,7 @@ export interface IDayDetails {
 
 
 export interface IweeklyReport {
-  weekNumber: number;
+  week: string;
   days: IDayDetails[];
 }
 
@@ -54,7 +54,7 @@ export interface IweeklySummary {
 
 
 export interface IReport extends Document {
-  weekNumber: number;
+  week: string;
   days: IDayDetails[];
   summary: IweeklySummary;
 }
@@ -104,7 +104,7 @@ const WeeklySummarySchema = new Schema({
 
 
 const ReportSchema = new Schema<IReport>({
-  weekNumber: { type: Number, required: true },
+  week: { type: String, required: true },
   days: { type: [DayDetailSchema], required: true }, 
   summary: { type: WeeklySummarySchema, required: true },
 });
