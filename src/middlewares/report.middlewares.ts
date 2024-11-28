@@ -22,3 +22,4 @@ export const dayDetailsPreSaveMiddleware = function (this: DayDetailsDocument, n
   }
   next();
 };
+ 
