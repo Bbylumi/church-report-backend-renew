@@ -11,6 +11,4 @@ router.get("/", monetary_controllers_1.default.getMonetary);
 router.get("/:id", monetary_controllers_1.default.getMonetaryById);
 router.put("/:id", monetary_controllers_1.default.updateMonetary);
 router.delete("/:id", monetary_controllers_1.default.deleteMonetary);
-router.get("/totals", monetary_controllers_1.default.calculateTotals);
-router.get("/report", monetary_controllers_1.default.generateReport);
 exports.default = router;

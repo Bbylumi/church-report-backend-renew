@@ -8,6 +8,9 @@ export interface IAttendance {
   children: number;
   total: number;
   preacher: string;
+  month: string;
+  day: string;
+  year: string;
 }
 
 export interface ISundayAttendance extends IAttendance {
@@ -104,9 +107,9 @@ const WeeklySummarySchema = new Schema({
 
 
 const ReportSchema = new Schema<IReport>({
-  week: { type: String, required: true },
+  week: { type: String, required: false },
   days: { type: [DayDetailSchema], required: true }, 
-  summary: { type: WeeklySummarySchema, required: true },
+  summary: { type: WeeklySummarySchema, required: false },
 });
 
 

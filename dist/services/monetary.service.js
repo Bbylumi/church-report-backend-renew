@@ -14,28 +14,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const monetary_model_1 = __importDefault(require("../models/monetary.model"));
 class MonetaryService {
-    calculateTotals(name, startDate, endDate) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return yield monetary_model_1.default.aggregate([
-                {
-                    $match: {
-                        name: name,
-                        date: {
-                            $gte: new Date(startDate),
-                            $lte: new Date(endDate)
-                        }
-                    }
-                },
-                { $unwind: "$percentages" },
-                {
-                    $group: {
-                        _id: "$name",
-                        totalAmount: { $sum: "$percentages.amount" }
-                    }
-                }
-            ]);
-        });
-    }
     generateReport(name, date) {
         return __awaiter(this, void 0, void 0, function* () {
             return yield monetary_model_1.default.find({

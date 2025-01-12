@@ -14,32 +14,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const monetary_service_1 = __importDefault(require("../services/monetary.service"));
 class MonetaryController {
-    calculateTotals(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const { name, startDate, endDate } = req.query;
-                const totals = yield monetary_service_1.default.calculateTotals(name, startDate, endDate);
-                res.status(200).json({ success: true, data: totals });
-            }
-            catch (error) {
-                console.error(error);
-                res.status(500).json({ message: "An error occurred while calculating totals" });
-            }
-        });
-    }
-    generateReport(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const { name, date } = req.query;
-                const report = yield monetary_service_1.default.generateReport(name, date);
-                res.status(200).json({ success: true, data: report });
-            }
-            catch (error) {
-                console.error(error);
-                res.status(500).json({ message: "An error occurred while generating the report" });
-            }
-        });
-    }
     createMonetary(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
